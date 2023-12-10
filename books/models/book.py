@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import RegexValidator
 from core.models import Content
-from author import Author
+from .author import Author
 
 
 class Book(Content):
