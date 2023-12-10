@@ -11,7 +11,7 @@ class Content(models.Model):
     publication_date = models.DateField(auto_now=False, auto_now_add=False)
     quantity = models.PositiveIntegerField(default=1)
     publisher = models.ForeignKey(
-        Publisher, on_delete=models.SET_DEFAULT, default="Editora não especificada")
+        Publisher, on_delete=models.SET_NULL, null=True)
     genre = models.ManyToManyField(Genre)
 
     class Meta:
