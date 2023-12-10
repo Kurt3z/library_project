@@ -13,3 +13,6 @@ class Content(models.Model):
     publisher = models.ForeignKey(
         Publisher, on_delete=models.SET_DEFAULT, default="Editora não especificada")
     genre = models.ManyToManyField(Genre)
+
+    class Meta:
+        verbose_name_plural = "Content"

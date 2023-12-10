@@ -8,3 +8,6 @@ class Country(models.Model):
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=5)
     flag = models.ImageField(upload_to="images/country_flags/")
+
+    class Meta:
+        verbose_name_plural = "Countries"
