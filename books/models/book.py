@@ -11,8 +11,8 @@ class Book(Content):
     format = models.CharField(max_length=10, choices=[(
         "hardcover", "Capa Dura"), ("paperback", "Capa Mole")])
     cover = models.ImageField(upload_to="images/books/")
-    author = models.ManyToManyField(Author, related_name="books")
+    authors = models.ManyToManyField(Author, related_name="books")
     slug = models.SlugField(default="", blank=True, null=False, db_index=True)
 
     def get_book_description(self):
-        return f"'{self.title}' by {self.author.__str__()} | {self.pages} pages"
+        return f"'{self.title}' by {self.authors.__str__()} | {self.pages} pages"
