@@ -16,6 +16,7 @@ class Content(models.Model):
         Publisher, on_delete=models.SET_NULL, null=True)
     genre = models.ManyToManyField(Genre)
     language = models.ForeignKey(Country, on_delete=models.PROTECT, default="")
+    slug = models.SlugField(default="", blank=True, null=False, db_index=True)
 
     class Meta:
         verbose_name_plural = "Content"
