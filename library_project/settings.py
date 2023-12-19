@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "books.apps.BooksConfig",
     "movies.apps.MoviesConfig",
-    "users.apps.UsersConfig"
+    "users.apps.UsersConfig",
+    "requisitions.apps.RequisitionsConfig"
 ]
 
 MIDDLEWARE = [
