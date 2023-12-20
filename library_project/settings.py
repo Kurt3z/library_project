@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     "movies.apps.MoviesConfig",
     "users.apps.UsersConfig",
     "requisitions.apps.RequisitionsConfig",
-    "reviews.apps.ReviewsConfig"
+    "reviews.apps.ReviewsConfig",
+
+
+    "bootstrap5"
 ]
 
 MIDDLEWARE = [
@@ -60,7 +63,9 @@ ROOT_URLCONF = "library_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "templates"
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
