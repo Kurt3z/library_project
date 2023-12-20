@@ -9,6 +9,9 @@
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <style>
+        {% block internal_css %}{% endblock internal_css %}
+    </style>
 </head>
 <body>
     {% include "navbar.html" %}

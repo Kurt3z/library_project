@@ -1,0 +1,74 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block internal_css %}
+    main {
+        background-image: url('{% static "images/background.jpg" %}');
+    }
+{% endblock internal_css %}
+
+{% block title %}
+    {% if page == "register" %}
+        Criar Conta
+    {% else %}
+        Iniciar Sessão
+    {% endif %}
+{% endblock title %}
+
+
+
+{% block content %}
+    {% if page == "register" %}
+        <main class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center my-0">
+            <div class="container bg-white w-25 p-5 rounded-3 border shadow-lg position-absolute" style="top: 120px">
+                <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+                    <img src="{% static "images/icon.svg" %}" alt="" height="50" class="mb-2" />
+                    <h1>Criar Conta</h1>
+                </div>
+                <form action="">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Apelido</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <label for="email" class="form-label">Endereço Email</label>
+                    <input type="email" class="form-control mb-3" />
+                    <label for="email" class="form-label">Nome de Utilizador</label>
+                    <input type="email" class="form-control mb-3" />
+                    <label for="password" class="form-label">Palavra-passe</label>
+                    <input type="password" class="form-control mb-3" />
+                    <label for="password" class="form-label">Confirmar Palavra-passe</label>
+                    <input type="password" class="form-control mb-3" />
+
+                    <input type="submit" value="Registar" class="btn btn-primary mb-3" />
+                </form>
+                <small class="text-secondary">Já tem uma conta?</small>
+                <h5><a href="{% url "login" %}" class="btn btn-info text-white fw-bold">Iniciar Sessão</a></h5>
+            </div>
+        </main>
+    {% else %}
+        <main class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center my-0">
+            <div class="container bg-white w-25 p-5 rounded-3 border shadow-lg position-absolute" style="top: 200px">
+                <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+                    <img src="{% static "images/icon.svg" %}" alt="" height="50" class="mb-2" />
+                    <h1>Iniciar Sessão</h1>
+                </div>
+                <form action="">
+                    <label for="email" class="form-label">Nome de Utilizador</label>
+                    <input type="email" class="form-control mb-3" />
+                    <label for="password" class="form-label">Palavra-passe</label>
+                    <input type="password" class="form-control mb-3" />
+
+                    <input type="submit" value="Entrar" class="btn btn-primary mb-3" />
+                </form>
+                <small class="text-secondary">Ainda não tem uma conta?</small>
+                <h5><a href="{% url "register" %}" class="btn btn-info text-white fw-bold">Criar Conta</a></h5>
+            </div>
+        </main>
+    {% endif %}
+{% endblock content %}
