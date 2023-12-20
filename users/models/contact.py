@@ -7,6 +7,12 @@ from .district import District
 
 
 class Contact(models.Model):
+    GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
+    ]
+
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -15,6 +21,7 @@ class Contact(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=500)
     birthdate = models.DateField(auto_now=False, auto_now_add=False)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
     street = models.CharField(max_length=500)
     building = models.PositiveIntegerField()
     postal_code = models.CharField(max_length=8, validators=[

@@ -1,0 +1,47 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-dark p-4">
+    <a class="navbar-brand text-capitalize py-2 px-3 rounded-2" href="#">
+        <img src="{% static 'images/icon.svg' %}" alt="" height="40" />
+    </a>
+    <button
+        class="navbar-toggler text-white bg-light"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto w-75 justify-content-center flex-column flex-lg-row hstack gap-md-3">
+            <li class="nav-item">
+                <a class="link-light link-opacity-75-hover nav-link mt-4 mt-lg-0" href="{% url "index" %}">Página Inicial</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-light link-opacity-75-hover" href="./list-books.html">Livros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-light link-opacity-75-hover" href="#">Filmes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-light link-opacity-75-hover" href="#">Regras</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-light link-opacity-75-hover" href="#">Sobre Nós</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-light link-opacity-75-hover mb-4 mb-lg-0" href="#">Contactos</a>
+            </li>
+        </ul>
+        <!-- Login and Sign Up Buttons -->
+        <div class="navbar-nav justify-content-center gap-3">
+            <a href="#" class="btn btn-primary btn mb-lg-0">Iniciar Sessão</a>
+            <a href="./signup.html" class="btn btn-primary btn">Criar Conta</a>
+        </div>
+    </div>
+</nav>
