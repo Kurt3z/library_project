@@ -20,7 +20,7 @@
 {% block content %}
     {% if page == "register" %}
         <main class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center my-0">
-            <div class="container bg-white w-25 p-5 rounded-3 border shadow-lg position-absolute" style="top: 120px">
+            <div class="container bg-white w-50 p-5 rounded-3 border shadow-lg position-absolute" style="top: 150px">
                 <div class="d-flex flex-column justify-content-center align-items-center mb-4">
                     <img src="{% static "images/icon.svg" %}" alt="" height="50" class="mb-2" />
                     <h1>Criar Conta</h1>
@@ -48,12 +48,12 @@
                     <input type="submit" value="Registar" class="btn btn-primary mb-3" />
                 </form>
                 <small class="text-secondary">Já tem uma conta?</small>
-                <h5><a href="{% url "login" %}" class="btn btn-info text-white fw-bold">Iniciar Sessão</a></h5>
+                <h5><a href="{% url "login" %}" class="btn btn-info text-white fw-bold mt-3">Iniciar Sessão</a></h5>
             </div>
         </main>
     {% else %}
         <main class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center my-0">
-            <div class="container bg-white w-25 p-5 rounded-3 border shadow-lg position-absolute" style="top: 200px">
+            <div class="container bg-white w-50 p-5 rounded-3 border shadow-lg position-absolute" style="top: 200px">
                 <div class="d-flex flex-column justify-content-center align-items-center mb-4">
                     <img src="{% static "images/icon.svg" %}" alt="" height="50" class="mb-2" />
                     <h1>Iniciar Sessão</h1>
@@ -67,7 +67,7 @@
                     <input type="submit" value="Entrar" class="btn btn-primary mb-3" />
                 </form>
                 <small class="text-secondary">Ainda não tem uma conta?</small>
-                <h5><a href="{% url "register" %}" class="btn btn-info text-white fw-bold">Criar Conta</a></h5>
+                <h5><a href="{% url "register" %}" class="btn btn-info text-white fw-bold mt-3">Criar Conta</a></h5>
             </div>
         </main>
     {% endif %}
