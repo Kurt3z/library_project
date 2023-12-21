@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+        <script src="./assets/js/bootstrap.bundle.min.js" defer></script>
+
+        <!-- Ion Icons -->
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+
+        <title>Iniciar Sessão</title>
+
+        <style>
+            main {
+                background-image: url('./assets/images/background.jpg');
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header Section -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark p-4">
+            <a class="navbar-brand text-capitalize py-2 px-3 rounded-2" href="#">
+                <img src="./assets/images/icon.svg" alt="" height="40" />
+            </a>
+            <button
+                class="navbar-toggler text-white bg-light"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto w-75 justify-content-center flex-column flex-lg-row hstack gap-md-3">
+                    <li class="nav-item">
+                        <a class="nav-link link-light link-opacity-75-hover mt-4 mt-lg-0" href="./index.html"
+                            >Página Inicial</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-light link-opacity-75-hover" href="./list-books.html">Livros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-light link-opacity-75-hover" href="#">Filmes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-light link-opacity-75-hover" href="#">Regras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-light link-opacity-75-hover" href="#">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-light link-opacity-75-hover mb-4 mb-lg-0" href="#">Contactos</a>
+                    </li>
+                </ul>
+                <!-- Login and Sign Up Buttons -->
+                <div class="navbar-nav justify-content-center gap-3">
+                    <a href="#" class="btn btn-primary btn mb-lg-0">Iniciar Sessão</a>
+                    <a href="./signup.html" class="btn btn-primary btn">Criar Conta</a>
+                </div>
+            </div>
+        </nav>
+        <!-- Main Section -->
+        <main class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center my-0">
+            <div class="container bg-white w-25 p-5 rounded-3 border shadow-lg position-absolute" style="top: 200px">
+                <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+                    <img src="./assets/images/icon.svg" alt="" height="50" class="mb-2" />
+                    <h1>Iniciar Sessão</h1>
+                </div>
+                <form action="">
+                    <label for="email" class="form-label">Nome de Utilizador</label>
+                    <input type="email" class="form-control mb-3" />
+                    <label for="password" class="form-label">Palavra-passe</label>
+                    <input type="password" class="form-control mb-3" />
+
+                    <input type="submit" value="Entrar" class="btn btn-primary mb-3" />
+                </form>
+                <small class="text-secondary">Ainda não tem uma conta?</small>
+                <h5><a href="./signup.html" class="btn btn-info text-white fw-bold">Criar Conta</a></h5>
+            </div>
+        </main>
+    </body>
+</html>

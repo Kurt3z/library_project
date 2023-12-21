@@ -4,8 +4,9 @@ from .contact import Contact
 
 
 class Reader(Contact):
-    reader_id = models.UUIDField(
-        default=uuid.uuid4, unique=True, editable=False)
-    requisition_count = models.PositiveIntegerField(default=0)
+    requisition_count = models.PositiveIntegerField(default=0, editable=False)
     fines_value = models.DecimalField(
-        max_digits=5, decimal_places=2, default=0)
+        max_digits=5, decimal_places=2, default=0, editable=False)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
