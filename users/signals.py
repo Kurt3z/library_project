@@ -12,8 +12,6 @@ def createReader(sender, instance, created, **kwargs):
             username=user.username,
             email=user.email
         )
-        print(reader)
-    print("Updated")
 
 
 def deleteUser(sender, instance, **kwargs):
