@@ -39,9 +39,27 @@
             </li>
         </ul>
         <!-- Login and Sign Up Buttons -->
+        {% if request.user.is_authenticated %}
+        <div class="navbar-nav justify-content-center align-items-center gap-3">
+            <a class="nav-item nav-link text-white text-center mb-lg-0 d-none d-lg-inline-block" href="#">
+                <div class="rounded-circle" style="width: 64px; height: 64px">
+                    {% with reader=request.user.contact %}
+                    {% if reader %}
+                        <img src="{{reader.profile_image.url}}" alt="Profile Image" style="width: 100%; height: 100%; object-fit: contain;" class="rounded-circle">
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </a>
+            <a href="#" class="btn btn-primary btn d-block d-lg-none w-100">A minha Conta</a>
+            <a href="{% url "logout" %}" class="btn btn-primary btn d-inline w-100 h-50">
+                Terminar Sessão
+            </a>
+        </div>
+        {% else %}
         <div class="navbar-nav justify-content-center gap-3">
             <a href="{% url "login" %}" class="btn btn-primary btn mb-lg-0">Iniciar Sessão</a>
             <a href="{% url "register" %}" class="btn btn-primary btn">Criar Conta</a>
         </div>
+        {% endif %}
     </div>
 </nav>

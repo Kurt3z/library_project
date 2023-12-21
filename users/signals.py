@@ -7,11 +7,20 @@ from .models import Reader
 def createReader(sender, instance, created, **kwargs):
     if created:
         user = instance
-        reader = Reader.objects.create(
-            user=user,
-            username=user.username,
-            email=user.email
-        )
+        if user.first_name and user.last_name:
+            reader = Reader.objects.create(
+                user=user,
+                first_name=user.first_name,
+                last_name=user.last_name,
+                username=user.username,
+                email=user.email
+            )
+        else:
+            reader = Reader.objects.create(
+                user=user,
+                username=user.username,
+                email=user.email
+            )
 
 
 def deleteUser(sender, instance, **kwargs):

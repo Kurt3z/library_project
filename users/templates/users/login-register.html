@@ -20,31 +20,31 @@
 {% block content %}
     {% if page == "register" %}
         <main class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center my-0">
-            <div class="container bg-white w-50 p-5 rounded-3 border shadow-lg position-relative" style="top: 50px">
+            <div class="container bg-white w-50 p-5 rounded-3 border shadow-lg">
                 <div class="d-flex flex-column justify-content-center align-items-center mb-4">
                     <img src="{% static "images/icon.svg" %}" alt="" height="50" class="mb-2" />
                     <h1>Criar Conta</h1>
                 </div>
-                <form action="">
+                <form action="{% url "register" %}" method="POST">
+                    {% csrf_token %}
                     <div class="row mb-3">
-                        <div class="col">
-                            <label for="">Nome</label>
-                            <input type="text" class="form-control" />
-                        </div>
-                        <div class="col">
-                            <label for="">Apelido</label>
-                            <input type="text" class="form-control" />
-                        </div>
+                        {% for field in form %}
+                            {% if field.label == "Nome" or field.label == "Apelido" %}
+                                <div class="col">
+                                    <label for="">{{field.label}}</label>
+                                    {{field}}
+                                    {{field.errors}}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                    <label for="email" class="form-label">Endereço Email</label>
-                    <input type="email" class="form-control mb-3" />
-                    <label for="email" class="form-label">Nome de Utilizador</label>
-                    <input type="email" class="form-control mb-3" />
-                    <label for="password" class="form-label">Palavra-passe</label>
-                    <input type="password" class="form-control mb-3" />
-                    <label for="password" class="form-label">Confirmar Palavra-passe</label>
-                    <input type="password" class="form-control mb-3" />
-
+                    {% for field in form %}
+                        {% if field.label != "Nome" and field.label != "Apelido" %}
+                        <label class="form-label">{{field.label}}</label>
+                        {{field}}
+                        {{field.errors}}
+                        {% endif %}
+                    {% endfor %}
                     <input type="submit" value="Registar" class="btn btn-primary mb-3" />
                 </form>
                 <small class="text-secondary">Já tem uma conta?</small>
@@ -53,16 +53,18 @@
         </main>
     {% else %}
         <main class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center my-0">
-            <div class="container bg-white w-50 p-5 rounded-3 border shadow-lg position-relative">
+            <div class="container bg-white w-50 p-5 rounded-3 border shadow-lg position-relative" style="top: -120px">
                 <div class="d-flex flex-column justify-content-center align-items-center mb-4">
                     <img src="{% static "images/icon.svg" %}" alt="" height="50" class="mb-2" />
                     <h1>Iniciar Sessão</h1>
                 </div>
-                <form action="">
-                    <label for="email" class="form-label">Nome de Utilizador</label>
-                    <input type="email" class="form-control mb-3" />
-                    <label for="password" class="form-label">Palavra-passe</label>
-                    <input type="password" class="form-control mb-3" />
+                <form action="{% url "login" %}" method="POST">
+                    {% csrf_token %}
+                    <label for="formInput#text" class="form-label">Nome de Utilizador</label>
+                    <input class="form-control mb-3" id="formInput#text" type="text" name="username" placeholder="Insira o seu nome de utilizador..."/>
+
+                    <label for="formInput#password" class="form-label">Palavra-passe</label>
+                    <input class="form-control mb-3" id="formInput#password" type="password" name="password" placeholder="••••••••"/>
 
                     <input type="submit" value="Entrar" class="btn btn-primary mb-3" />
                 </form>

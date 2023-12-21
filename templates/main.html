@@ -12,8 +12,15 @@
         {% block internal_css %}{% endblock internal_css %}
     </style>
 </head>
-<body>
+<body class="position-relative">
     {% include "navbar.html" %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="container text-center alert alert-{% if message.tags == "error" %}danger {% else %}{{message.tags}}{% endif %} position-absolute" style="left: 0; right: 0; margin-left: auto; margin-right: auto; width: 500px;" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block content %}
     {% endblock content %}    
 </body>
