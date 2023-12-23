@@ -28,6 +28,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
+            messages.success(request, "Sessão iniciada com sucesso.")
             return redirect("index")
         else:
             messages.error(
