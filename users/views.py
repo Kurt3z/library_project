@@ -8,8 +8,8 @@ from .forms import CustomUserCreationForm
 def loginUser(request):
     page = "login"
 
-    # if request.user.is_authenticated:
-    #     return redirect("index")
+    if request.user.is_authenticated:
+        return redirect("index")
 
     if request.method == "POST":
         username = request.POST["username"]
@@ -42,6 +42,9 @@ def loginUser(request):
 def registerUser(request):
     form = CustomUserCreationForm()
     page = "register"
+
+    if request.user.is_authenticated:
+        return redirect("index")
 
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)

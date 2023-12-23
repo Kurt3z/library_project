@@ -1,0 +1,55 @@
+{% extends "main.html" %}
+
+
+{% block content %}
+<main class="container-fluid w-75 p-5">
+    <h2 class="mb-3">Pesquisa os teus livros favoritos...</h2>
+    <form action="">
+        <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">
+                <ion-icon name="search-outline"></ion-icon>
+            </span>
+            <input type="text" class="form-control" placeholder="Pesquisar por Título, Autor, ISBN..." aria-label="Username" aria-describedby="basic-addon1">
+          </div>                  
+    </form>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5">
+        {% for book in books %}
+        <div class="col">
+            <div class="card">
+                <img src="{{book.cover.url}}" alt="" class="card-img-top bg-primary-subtle" style="object-fit: contain; height: 15rem;"/>
+                <div class="card-body">
+                    <h5 class="card-title">{{book.title}}</h5>
+                    {% for author in book.authors.all %}
+                    <h6 class="card-title"><a href="#" class="link-secondary">{{author.first_name}} {{author.last_name}}</a></h6>
+                    {% endfor %}
+                    <p class="card-text">
+                        <ul class="list-unstyled">
+                            <li><small class="fw-bold">Editora: </small> <small>{{book.publisher}}</small></li>
+                            <li><small class="fw-bold">Nº Páginas: </small> <small>{{book.pages}}</small></li>
+                            <li><small class="fw-bold">Encadernação: </small> <small>{{book.get_format_display}}</small></li>
+                            <li><small class="fw-bold">Quantidade: </small> <small>{{book.quantity}}</small></li>
+                            <li><small class="fw-bold">1º Edição: </small> <small>{{book.publication_date}}</small></li>
+                            <li style="font-size: 13px;">
+                                {% for genre in book.genre.all|slice:"4" %}
+                                    <span class="badge text-bg-dark p-2 mt-2">{{genre}}</span>
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Ver Mais</a>
+                </div>
+            </div>
+        </div>      
+        {% endfor %}
+
+    </div>
+
+
+
+
+</main>
+
+
+
+{% endblock content %}

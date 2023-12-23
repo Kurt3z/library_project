@@ -13,5 +13,5 @@ class Book(Content):
     cover = models.ImageField(upload_to="images/books/")
     authors = models.ManyToManyField(Author, related_name="books")
 
-    def get_book_description(self):
-        return f"'{self.title}' by {self.authors.__str__()} | {self.pages} pages"
+    def __str__(self):
+        return self.title
