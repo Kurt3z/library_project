@@ -1,9 +1,15 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib import messages
 from django.http import HttpResponse
 
 from .forms import BookForm
 from .models import Book
+
+
+# Helper Functions
+def is_librarian(user):
+    return user.is_authenticated and user.contact.is_librarian
 
 
 def listBooks(request):
@@ -13,6 +19,8 @@ def listBooks(request):
     })
 
 
+@login_required(login_url="/users/login/")
+@user_passes_test(is_librarian, login_url="/")
 def addBook(request):
     form = BookForm()
 

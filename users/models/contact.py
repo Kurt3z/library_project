@@ -34,6 +34,7 @@ class Contact(models.Model):
         District, on_delete=models.SET_NULL, null=True, blank=True)
     profile_image = models.ImageField(
         null=True, blank=True, upload_to="profiles/", default="images/default-profile.png")
+    is_librarian = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

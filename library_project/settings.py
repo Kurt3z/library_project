@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "requisitions.apps.RequisitionsConfig",
     "reviews.apps.ReviewsConfig",
-
-
-    "bootstrap5"
 ]
 
 MIDDLEWARE = [

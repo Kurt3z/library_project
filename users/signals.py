@@ -2,25 +2,49 @@ from django.db.models.signals import post_save, post_delete
 from django.contrib.auth.models import User
 
 from .models import Reader
+from .models import Librarian
 
 
 def createReader(sender, instance, created, **kwargs):
     if created:
         user = instance
-        if user.first_name and user.last_name:
-            reader = Reader.objects.create(
-                user=user,
-                first_name=user.first_name,
-                last_name=user.last_name,
-                username=user.username,
-                email=user.email
-            )
+
+        if user.is_superuser:
+            pass
+
         else:
-            reader = Reader.objects.create(
-                user=user,
-                username=user.username,
-                email=user.email
-            )
+            if user.is_staff:
+                if user.first_name and user.last_name:
+                    librarian = Librarian.objects.create(
+                        user=user,
+                        first_name=user.first_name,
+                        last_name=user.last_name,
+                        username=user.username,
+                        email=user.email,
+                        is_librarian=True
+                    )
+                else:
+                    librarian = Librarian.objects.create(
+                        user=user,
+                        username=user.username,
+                        email=user.email,
+                        is_librarian=True
+                    )
+            else:
+                if user.first_name and user.last_name:
+                    reader = Reader.objects.create(
+                        user=user,
+                        first_name=user.first_name,
+                        last_name=user.last_name,
+                        username=user.username,
+                        email=user.email,
+                    )
+                else:
+                    reader = Reader.objects.create(
+                        user=user,
+                        username=user.username,
+                        email=user.email,
+                    )
 
 
 def deleteUser(sender, instance, **kwargs):
