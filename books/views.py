@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib import messages
-from django.http import HttpResponse
 
-from .forms import BookForm
+from .forms import BookForm, AuthorForm
 from .models import Book
 
 
@@ -19,7 +18,6 @@ def listBooks(request):
     })
 
 
-@login_required(login_url="/users/login/")
 @user_passes_test(is_librarian, login_url="/")
 def addBook(request):
     form = BookForm()
@@ -33,7 +31,37 @@ def addBook(request):
             book.save()
             messages.success(request, "Novo livro adicionado com sucesso.")
             return redirect("add-book")
+        else:
+            messages.error(request, "Foram encontrados erros no formulário.")
+            return render(request, "books/book-form.html", {
+                "form": BookForm(request.POST, request.FILES)
+            })
 
     return render(request, "books/book-form.html", {
+        "form": form
+    })
+
+
+@user_passes_test(is_librarian, login_url="/")
+def addAuthor(request):
+    form = AuthorForm()
+
+    if request.method == "POST":
+        form = AuthorForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            author = form.save(commit=False)
+            author.first_name = author.first_name.title()
+            author.last_name = author.last_name.title()
+            author.save()
+            messages.success(request, "Novo autor adicionado com sucesso.")
+            return redirect("add-author")
+        else:
+            messages.error(request, "Foram encontrados erros no formulário.")
+            return render(request, "books/author-form.html", {
+                "form": AuthorForm(request.POST, request.FILES)
+            })
+
+    return render(request, "books/author-form.html", {
         "form": form
     })

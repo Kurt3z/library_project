@@ -35,7 +35,15 @@
                         {{field}}
                         {{field.errors}}
                         {% if field.label == "Autor(es)" or field.label == "Editora" or field.label == "Géneros" or field.label == "Idioma"%}
-                        <a href="#" class="btn btn-info btn-sm text-white fw-bold mt-3">Adicionar {{field.label}}</a>
+                            {% if field.label == "Autor(es)" %}
+                                <a href="{% url "add-author" %}" class="btn btn-info btn-sm text-white fw-bold mt-3">Adicionar {{field.label}}</a>
+                            {% elif field.label == "Editora" %}
+                                <a href="{% url "add-publisher" %}" class="btn btn-info btn-sm text-white fw-bold mt-3">Adicionar {{field.label}}</a>
+                            {% elif field.label == "Géneros" %}
+                                <a href="{% url "add-genre" %}" class="btn btn-info btn-sm text-white fw-bold mt-3">Adicionar {{field.label}}</a>
+                            {% elif field.label == "Idioma" %}
+                                <a href="{% url "add-country" %}" class="btn btn-info btn-sm text-white fw-bold mt-3">Adicionar {{field.label}}</a>
+                            {% endif %}
                         {% endif %}
                     </div>              
                 {% endfor %}

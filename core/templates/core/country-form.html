@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+
+{% block content %}
+<main class="container mt-5 border shadow-lg rounded-4 p-5 mb-5">
+    <div class="container-fluid d-flex align-items-center justify-content-center mb-3">
+        <ion-icon name="add-circle-outline" class="me-4" size="large"></ion-icon>
+        <h1>Adicionar País</h1>
+    </div>
+
+    <div class="container-sm w-75 border p-5 rounded-3">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    <label for="title" class="form-label fw-bold">{{field.label}}</label>
+                    {{field}}
+                    {{field.errors}}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Registar" class="btn btn-primary btn-lg">
+        </form>
+    </div>
+</main>
+
+
+{% endblock content %}
