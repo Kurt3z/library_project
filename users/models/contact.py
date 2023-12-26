@@ -8,9 +8,9 @@ from .district import District
 
 class Contact(models.Model):
     GENDER_CHOICES = [
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('O', 'Other'),
+        ('M', 'Masculino'),
+        ('F', 'Feminino'),
+        ('O', 'Outro'),
     ]
 
     id = models.UUIDField(default=uuid.uuid4, unique=True,

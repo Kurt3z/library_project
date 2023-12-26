@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ReaderForm
 
 
 def loginUser(request):
@@ -69,3 +70,32 @@ def logoutUser(request):
     logout(request)
     messages.info(request, "Sessão encerrada com sucesso.")
     return redirect("login")
+
+
+@login_required(login_url="login")
+def userAccount(request):
+    if request.user.contact.is_librarian:
+        profile = request.user.contact.librarian
+    else:
+        profile = request.user.contact.reader
+        form = ReaderForm(instance=profile)
+
+    if request.method == "POST":
+        # Needs to also handle Librarian profiles which is not doing yet - TERNARY OPERATOR
+        form = ReaderForm(request.POST, request.FILES, instance=profile)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Perfil atualizado com successo.")
+            return redirect("account")
+        else:
+            messages.error(request, "Existem erros de validação.")
+            return render(request, "users/account.html", {
+                "form": ReaderForm(request.POST, request.FILES, instance=profile)
+            })
+
+    context = {
+        "profile": profile,
+        "form": form
+    }
+    return render(request, "users/account.html", context)

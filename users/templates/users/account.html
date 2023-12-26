@@ -1,0 +1,97 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container rounded bg-white mt-5">
+    <div class="row g-5">
+        <div class="col-md-3 border-end border-2">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5 border border-primary mb-3" width="250" height="250" src="{{profile.profile_image.url}}" style="object-fit: fill;">
+                <h2 class="font-weight-bold">{{profile}}</h2>
+                <span class="text-primary">{{profile.email}}</span>
+                <span> </span>
+            </div>
+        </div>
+        <div class="col-md-9 border-end border-2">
+            <div class="p-3 py-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="text-right">A sua informação</h2>
+                </div>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row mt-2">
+                    {% for field in form %}
+                        {% if field.label == "Nome" or field.label == "Apelido"%}
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">{{field.label}}</label>
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="row">                
+                    {% for field in form %}
+                    {% if field.label == "Endereço de Email" or field.label == "Género" or field.label == "Data de Nascimento"%}
+                        <div class="col-md-12">
+                            <label class="form-label fw-bold">{{field.label}}</label>
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    {% for field in form %}
+                    {% if field.label == "Rua" %}
+                        <div class="col-md-9">
+                            <label class="form-label fw-bold">{{field.label}}</label>
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                    {% elif field.label == "Porta" %}
+                        <div class="col">
+                            <label class="form-label fw-bold">{{field.label}}</label>
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                    {% elif field.label == "Código Postal" %}
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">{{field.label}}</label>
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                    {% elif field.label == "Distrito" %}
+                        <div class="col-md-8">
+                            <label class="form-label fw-bold">{{field.label}}</label>
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    {% for field in form %}
+                        {% if field.label == "Foto de Perfil" %}
+                            <div class="col">
+                                <label class="form-label fw-bold">{{field.label}}</label>
+                                {{field}}
+                                {{field.errors}}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <input type="submit" value="Atualizar Perfil" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="mt-5"></div>
+
+
+
+{% endblock content %}
