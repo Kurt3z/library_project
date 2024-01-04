@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block internal_css %}
+    main {
+        background-image: url('{% static "images/background.jpg" %}');
+    }
+{% endblock internal_css %}
+
+{% block content %}
+<main class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center my-0">
+    <div class="container bg-white w-50 p-5 rounded-3 border shadow-lg">
+        <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+            <img src="{% static "images/icon.svg" %}" alt="" height="50" class="mb-2" />
+            <h1>Registo de Bibliotecário</h1>
+        </div>
+        <form action="{% url "register" %}" method="POST">
+            {% csrf_token %}
+            <div class="row mb-3">
+                {% for field in form %}
+                    {% if field.label == "Nome" or field.label == "Apelido" %}
+                        <div class="col">
+                            <label for="">{{field.label}}</label>
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for field in form %}
+                {% if field.label != "Nome" and field.label != "Apelido" %}
+                <label class="form-label">{{field.label}}</label>
+                {{field}}
+                {{field.errors}}
+                {% endif %}
+            {% endfor %}
+            <input type="submit" value="Registar" class="btn btn-primary mb-3" />
+        </form>
+    </div>
+</main>
+{% endblock content %}
